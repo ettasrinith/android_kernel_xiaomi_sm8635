@@ -237,8 +237,11 @@ static void vmpressure_work_fn(struct work_struct *work)
  * This function does not return any value.
  */
 void vmpressure(gfp_t gfp, struct mem_cgroup *memcg, bool tree,
-		unsigned long scanned, unsigned long reclaimed)
+		unsigned long scanned, unsigned long reclaimed, int order)
 {
+	if (order > PAGE_ALLOC_COSTLY_ORDER)
+		return;
+
 	struct vmpressure *vmpr;
 
 	if (mem_cgroup_disabled())
