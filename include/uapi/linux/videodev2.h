@@ -2512,7 +2512,7 @@ struct v4l2_event {
 #ifdef __KERNEL__
 	struct __kernel_timespec	timestamp;
 #else
-	struct timespec			timestamp;
+	struct __kernel_timespec		timestamp;
 #endif
 	__u32				id;
 	__u32				reserved[8];
